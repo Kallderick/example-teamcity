@@ -1,10 +1,12 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'maven:3.8.1-adoptopenjdk-11' 
+      args '-v /root/.m2:/root/.m2'
   stages {
-    stage('First stage'){
+    stage('Build stage'){
       steps {
-        git clone https://github.com/Kallderick/example-teamcity.git
-        mvn clean install 
+        sh 'mvn -B -DskipTests clean package'
       }
     }
     stage('Second stage'){
