@@ -3,6 +3,7 @@ pipeline {
   stages {
     stage('First stage'){
       steps {
+        git clone https://github.com/Kallderick/example-teamcity.git
         mvn clean install 
       }
     }
